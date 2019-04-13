@@ -66,7 +66,7 @@ public class Server {
 
           rs.next();
           String server_hash1 = rs.getString("hash");
-          String server_hash2 = "" + (server_hash1 + "|" + random).hashCode();
+          String server_hash2 = SHA256.getSHA256(server_hash1 + "|" + random);
           if (server_hash2.equals(hash2)) {
 
             // String code="这是一个加密/解密测试，用于网络安全第四次实验。";

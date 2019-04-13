@@ -89,10 +89,10 @@ public class Client extends JFrame {
             JOptionPane.showMessageDialog(contentPane, "非法用户名");
             return;
           }
-          int hash1=(username+"|"+passwd).hashCode();
-          System.out.println(hash1);
+          String hash1=SHA256.getSHA256(username+"|"+passwd);
+//          System.out.println(hash1);
           String random=""+(int)(Math.random()*100000);
-          int hash2=(hash1+"|"+random).hashCode();
+          String hash2=SHA256.getSHA256(hash1+"|"+random);
           OutputStream os= socket.getOutputStream();
           InputStream is=socket.getInputStream();
           os.write((username+"|"+hash2+"|"+random).getBytes());

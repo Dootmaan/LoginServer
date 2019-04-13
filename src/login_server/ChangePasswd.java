@@ -113,8 +113,8 @@ public class ChangePasswd extends JFrame {
 
         try {
           socket = new Socket("localhost", 9091);
-          int hash1 = (username + "|" + passwd1).hashCode();
-          int hash2 = (username + "|" + new_passwd).hashCode();
+          String hash1 = SHA256.getSHA256(username + "|" + passwd1);
+          String hash2 = SHA256.getSHA256(username + "|" + new_passwd);
           OutputStream os= socket.getOutputStream();
           InputStream is=socket.getInputStream();
           os.write((username+"|"+AES.AESEncode(String.valueOf(hash2), String.valueOf(hash1))).getBytes());
